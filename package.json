@@ -1,0 +1,27 @@
+{
+    "name": "superhero-database",
+    "version": "1.0.0",
+    "description": "Full-stack Superhero Database Web Application",
+    "scripts": {
+        "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
+        "dev:server": "cd server && npm run dev",
+        "dev:client": "cd client && npm run dev",
+        "install:all": "npm install && cd server && npm install && cd ../client && npm install",
+        "test": "npm run test:server && npm run test:client",
+        "test:server": "cd server && npm test",
+        "test:client": "cd client && npm run test:run",
+        "build": "cd client && npm run build"
+    },
+    "keywords": [
+        "superhero",
+        "database",
+        "react",
+        "express",
+        "crud"
+    ],
+    "author": "",
+    "license": "MIT",
+    "devDependencies": {
+        "concurrently": "^8.2.2"
+    }
+}
