@@ -1,0 +1,12 @@
+@import './variables.css';
+@import './base.css';
+@import './container.css';
+@import './utilities.css';
+
+@media (max-width: 768px) {
+  :root {
+    --font-size-4xl: 32px;
+    --font-size-3xl: 24px;
+    --font-size-2xl: 20px;
+  }
+}
