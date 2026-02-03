@@ -1,0 +1,15 @@
+.nav {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.navLink {
+    color: var(--color-text-secondary);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.navLink:hover {
+    color: var(--color-accent-primary);
+}

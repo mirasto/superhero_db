@@ -1,0 +1,21 @@
+.header {
+    background: #ffffff;
+    border-bottom: 1px solid var(--color-border);
+    padding: 16px 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.headerContent {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+@media (max-width: 340px) {
+    .headerContent {
+        flex-direction: column;
+        gap: 8px;
+    }
+}
