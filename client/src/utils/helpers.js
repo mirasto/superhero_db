@@ -14,5 +14,3 @@ export const prepareSuperheroFormData = (formData, selectedFiles = []) => {
     selectedFiles.forEach(file => submitData.append('images', file));
     return submitData;
 };
-
-// Temporary debug comment
