@@ -1,6 +1,6 @@
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
-import ConfirmModal from '../components/ConfirmModal/ConfirmModal';
+import ConfirmModal from '../components/ui/ConfirmModal/ConfirmModal';
 
 describe('ConfirmModal', () => {
     it('renders nothing when isOpen is false', () => {

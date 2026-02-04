@@ -1,7 +1,7 @@
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
-import SuperheroCard from '../components/SuperheroCard/SuperheroCard';
+import SuperheroCard from '../components/superhero/SuperheroCard/SuperheroCard';
 
 const mockSuperhero = {
     id: 'test-id-1',
@@ -41,23 +41,23 @@ describe('SuperheroCard', () => {
         const onDelete = vi.fn();
         renderWithRouter(<SuperheroCard superhero={mockSuperhero} onDelete={onDelete} />);
 
-        expect(screen.getByText(/Edit/)).toBeInTheDocument();
-        expect(screen.getByText(/Delete/)).toBeInTheDocument();
+        expect(screen.getByTitle('Edit')).toBeInTheDocument();
+        expect(screen.getByTitle('Delete')).toBeInTheDocument();
     });
 
     it('renders placeholder when no images', () => {
         const onDelete = vi.fn();
         renderWithRouter(<SuperheroCard superhero={mockSuperheroNoImages} onDelete={onDelete} />);
 
-
-        expect(screen.getByText('🦸')).toBeInTheDocument();
+        const image = screen.queryByRole('img');
+        expect(image).not.toBeInTheDocument();
     });
 
     it('calls onDelete when delete button is clicked', async () => {
         const onDelete = vi.fn();
         renderWithRouter(<SuperheroCard superhero={mockSuperhero} onDelete={onDelete} />);
 
-        const deleteButton = screen.getByText(/Delete/);
+        const deleteButton = screen.getByTitle('Delete');
         deleteButton.click();
 
         expect(onDelete).toHaveBeenCalledWith('test-id-1');

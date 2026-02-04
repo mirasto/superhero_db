@@ -5,6 +5,10 @@ class InMemoryStore {
     this.superheroes = new Map();
   }
 
+  clear() {
+    this.superheroes.clear();
+  }
+
 
   getAll(page = 1, limit = 5) {
     const allHeroes = Array.from(this.superheroes.values());

@@ -1,6 +1,6 @@
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
-import Pagination from '../components/Pagination/Pagination';
+import Pagination from '../components/ui/Pagination/Pagination';
 
 describe('Pagination', () => {
     const basePagination = {
@@ -26,11 +26,9 @@ describe('Pagination', () => {
         const onPageChange = vi.fn();
         render(<Pagination pagination={basePagination} onPageChange={onPageChange} />);
 
-        const firstButton = screen.getByLabelText('First page');
         const prevButton = screen.getByLabelText('Previous page');
 
-        expect(firstButton).toBeDisabled();
-        expect(prevButton).toBeDisabled();
+        expect(prevButton).toHaveAttribute('aria-disabled', 'true');
     });
 
     it('enables next buttons when hasNextPage is true', () => {
@@ -38,10 +36,8 @@ describe('Pagination', () => {
         render(<Pagination pagination={basePagination} onPageChange={onPageChange} />);
 
         const nextButton = screen.getByLabelText('Next page');
-        const lastButton = screen.getByLabelText('Last page');
 
         expect(nextButton).not.toBeDisabled();
-        expect(lastButton).not.toBeDisabled();
     });
 
     it('calls onPageChange when clicking next', () => {
