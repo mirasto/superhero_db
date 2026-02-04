@@ -2,8 +2,6 @@
 
 A full-stack web application for managing a superhero database with CRUD operations, image management, and pagination.
 
-![Superhero Database](https://via.placeholder.com/800x400?text=Superhero+Database)
-
 ## Features
 
 - **Create** superheroes with detailed information and multiple images
@@ -18,21 +16,23 @@ A full-stack web application for managing a superhero database with CRUD operati
 
 ### Backend
 
-- **Node.js** with Express.js
+- **Node.js** with **Express.js**
 - **Multer** for image uploads
+- **UUID** for unique identifiers
 - **In-memory storage** (data resets on server restart)
-- **Jest** for testing
+- **Jest** & **Supertest** for testing
 
 ### Frontend
 
-- **React 18** with Vite
-- **React Router** for navigation
-- **React Query** for state management and async operations
-- **Vanilla CSS** with custom properties
+- **React 19** with **Vite**
+- **React Router v7** for navigation
+- **TanStack Query (React Query) v5** for state management and async operations
+- **Axios** for API requests
+- **Vanilla CSS** with CSS Modules and custom variables
 
 ## Prerequisites
 
-- Node.js (v18 or higher recommended)
+- Node.js (v20 or higher recommended)
 - npm (v9 or higher)
 
 ## Getting Started
@@ -95,17 +95,13 @@ superhero/
 │   ├── src/
 │   │   ├── api/           # API client functions
 │   │   ├── components/    # React components
-│   │   │   ├── ConfirmModal/
-│   │   │   ├── ImageGallery/
-│   │   │   ├── ImageUploader/
-│   │   │   ├── Layout/
-│   │   │   ├── Pagination/
-│   │   │   ├── SuperheroCard/
-│   │   │   ├── SuperheroDetails/
-│   │   │   ├── SuperheroForm/
-│   │   │   └── SuperheroList/
+│   │   │   ├── image/     # Image related components
+│   │   │   ├── layout/    # Layout components
+│   │   │   ├── superhero/ # Superhero domain components
+│   │   │   └── ui/        # Shared UI components
 │   │   ├── hooks/         # Custom React hooks
 │   │   ├── styles/        # Global CSS
+│   │   ├── utils/         # Helper functions
 │   │   └── tests/         # Frontend tests
 │   └── package.json
 ├── server/                 # Express backend
@@ -140,24 +136,6 @@ superhero/
 - `page` - Page number (default: 1)
 - `limit` - Items per page (default: 5)
 
-### Example Request
-
-```bash
-# Get all superheroes (first page)
-curl http://localhost:3001/api/superheroes
-
-# Create a new superhero
-curl -X POST http://localhost:3001/api/superheroes \
-  -F "nickname=Superman" \
-  -F "real_name=Clark Kent" \
-  -F "origin_description=Born on Krypton..." \
-  -F "superpowers=Flight, Super strength, Heat vision" \
-  -F "catch_phrase=Up, up and away!" \
-  -F "images=@/path/to/image.jpg"
-```
-
-## Testing
-
 ### Run All Tests
 
 ```bash
@@ -186,66 +164,13 @@ cd client && npm run test:run
 cd client && npm test
 ```
 
-## Data Model
-
-```typescript
-interface Superhero {
-  id: string;
-  nickname: string; // e.g., "Superman"
-  real_name: string; // e.g., "Clark Kent"
-  origin_description: string;
-  superpowers: string[]; // e.g., ["flight", "strength"]
-  catch_phrase: string;
-  images: Image[];
-  createdAt: string;
-  updatedAt: string;
-}
-
-interface Image {
-  id: string;
-  filename: string;
-  url: string;
-}
-```
-
 ## Assumptions
 
-1. **In-memory storage**: Data is stored in memory and will reset when the server restarts. This was chosen for simplicity; a database like MongoDB or PostgreSQL could be added for persistence.
-
-2. **Local image storage**: Images are stored in the `server/uploads` folder. For production, consider using cloud storage (AWS S3, Cloudinary).
-
-3. **No authentication**: The application does not require user login. All operations are public.
-
-4. **Modern browsers**: The application targets modern browsers and does not support Internet Explorer.
-
-5. **Single user**: Designed for single-user operation; no concurrent editing protection.
-
-6. **Superpowers format**: Superpowers are entered as comma-separated values and stored as an array.
-
-7. **Image formats**: Accepts JPEG, PNG, GIF, and WebP images up to 5MB each.
-
-## Screenshots
-
-### Home Page (List View)
-
-- Displays superheroes in a responsive grid
-- Shows thumbnail image and nickname
-- Pagination with 5 items per page
-- Quick access to edit and delete actions
-
-### Details Page
-
-- Full superhero information
-- Image gallery with lightbox
-- Superpowers displayed as badges
-- Catch phrase in styled blockquote
-
-### Create/Edit Form
-
-- Form validation with error messages
-- Drag and drop image upload
-- Preview of uploaded images
-- Ability to remove existing images (edit mode)
+1. **In-memory storage**: Data is stored in memory and will reset when the server restarts.
+2. **Local image storage**: Images are stored in the `server/uploads` folder.
+3. **No authentication**: The application does not require user login.
+4. **Modern browsers**: The application targets modern browsers.
+5. **Image formats**: Accepts common image formats up to 5MB.
 
 ## Configuration
 
@@ -259,20 +184,8 @@ const PORT = process.env.PORT || 3001;
 
 ### Frontend API URL
 
-If you change the backend port, update `client/src/api/superheroApi.js`:
+If you change the backend port, update `client/src/config.js`:
 
 ```javascript
-const API_URL = 'http://localhost:3001/api';
+export const BASE_URL = 'http://localhost:3001';
 ```
-
-## License
-
-MIT License - feel free to use this project for learning or as a starting point for your own projects.
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
