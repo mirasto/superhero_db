@@ -1,0 +1,13 @@
+.formActions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    padding-top: 48px;
+    border-top: 1px solid var(--color-border);
+}
+
+@media (max-width: 600px) {
+    .formActions {
+        flex-direction: column;
+    }
+}
