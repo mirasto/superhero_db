@@ -42,7 +42,6 @@ A full-stack web application for managing a superhero database with CRUD operati
 1. **Clone the repository**
 
    ```bash
-   git clone <repository-url>
    cd superhero
    ```
 
