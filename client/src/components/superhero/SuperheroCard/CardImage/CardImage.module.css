@@ -1,0 +1,50 @@
+.cardImageLink {
+    display: block;
+}
+
+.cardImage {
+    position: relative;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    background: var(--color-bg-tertiary);
+}
+
+.cardImage img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.cardImagePlaceholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text-muted);
+}
+
+.cardImageOverlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.4);
+    opacity: 0;
+}
+
+:global(.superheroCard):hover .cardImageOverlay {
+    opacity: 1;
+}
+
+.cardImageOverlay span {
+    color: white;
+    font-weight: 700;
+    border: 2px solid white;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}

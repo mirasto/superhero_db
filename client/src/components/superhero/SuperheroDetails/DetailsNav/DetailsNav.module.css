@@ -1,0 +1,23 @@
+.detailsNav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
+}
+
+.detailsNavActions {
+    display: flex;
+    gap: 8px;
+}
+
+.iconStyle {
+    margin-right: 4px;
+}
+
+@media (max-width: 768px) {
+    .detailsNav {
+        flex-direction: column-reverse;
+        align-items: flex-start;
+        gap: 16px;
+    }
+}

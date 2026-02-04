@@ -1,0 +1,8 @@
+.cardActions {
+    display: flex;
+    gap: 4px;
+}
+
+.cardActions :global(.btn) {
+    flex: 1;
+}
